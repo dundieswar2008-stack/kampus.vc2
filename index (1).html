@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kampus.VC — AI Content Creator Marketplace</title>
+  <!-- Google Fonts: Nunito Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="page-width header-inner">
+      <a href="javascript:void(0)" onclick="navigateTo('home')" class="brand">
+        <i data-lucide="badge-check"></i> Kampus.VC
+      </a>
+
+      <nav class="main-nav">
+        <a href="javascript:void(0)" onclick="navigateTo('home')" id="nav-home" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="navigateTo('discover')" id="nav-discover">Discover Creators</a>
+        <a href="javascript:void(0)" onclick="navigateTo('portfolios')" id="nav-portfolios">Portfolios</a>
+        <a href="javascript:void(0)" onclick="navigateTo('create-brief')" id="nav-create-brief">Create Brief</a>
+        <a href="javascript:void(0)" onclick="navigateTo('assistant')" id="nav-assistant">AI Assistant</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Sign In Button -->
+        <button class="btn btn-outline btn-sm" onclick="openModal('signin')">Sign In</button>
+        <!-- Sign Up Button -->
+        <button class="btn btn-primary btn-pill btn-sm" onclick="openModal('signup')">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== PAGE: HOME ==================== -->
+  <div id="page-home">
+    <section class="home-hero">
+      <div class="page-width hero-inner">
+        <div class="hero-copy">
+          <h1>Your Next Creative<br /><span>Vision Starts Here.</span></h1>
+          <p>Discover verified AI creators, explore extraordinary AI-generated work, and bring your brand campaigns to life.</p>
+          
+          <div class="search-box">
+            <i data-lucide="search" style="color:#64748b"></i>
+            <input type="text" id="home-search" placeholder="Search by creator name, skills, tool or specialization..." onkeydown="if(event.key==='Enter') quickSearch()">
+            <button class="btn btn-ghost" onclick="quickSearch()"><i data-lucide="arrow-right"></i></button>
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-pill" onclick="navigateTo('discover')">Explore Creators <i data-lucide="arrow-right"></i></button>
+            <button class="btn btn-outline btn-pill" onclick="navigateTo('assistant')"><i data-lucide="bot"></i> AI Assistant</button>
+            <button class="btn btn-outline btn-pill" onclick="navigateTo('create-brief')">Create a Brief</button>
+          </div>
+
+          <div class="category-pills">
+            <a href="javascript:void(0)" onclick="filterCategory('AI Filmmaking')">AI Filmmaking</a>
+            <a href="javascript:void(0)" onclick="filterCategory('AI Animation')">AI Animation</a>
+            <a href="javascript:void(0)" onclick="filterCategory('Generative Art')">Generative Art</a>
+            <a href="javascript:void(0)" onclick="filterCategory('Product Advertising')">Product Advertising</a>
+          </div>
+        </div>
+
+        <img class="hero-art" src="https://d2q9lphzn5ioni.cloudfront.net/uploads/uploads_img/The-Content-Creators-Revolution_-A-Deep-Dive-into-the-AI-Toolkit.webp" alt="AI artwork">
+      </div>
+    </section>
+
+    <main class="page-width">
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat"><div class="icon-disc"><i data-lucide="users"></i></div><div><strong>215+</strong><small>AI Creators</small></div></div>
+        <div class="stat"><div class="icon-disc"><i data-lucide="play-square"></i></div><div><strong>1.2k+</strong><small>Creative Projects</small></div></div>
+        <div class="stat"><div class="icon-disc"><i data-lucide="shapes"></i></div><div><strong>150+</strong><small>Brands & Agencies</small></div></div>
+        <div class="stat"><div class="icon-disc"><i data-lucide="clipboard-check"></i></div><div><strong>850+</strong><small>Completed Campaigns</small></div></div>
+      </div>
+
+      <!-- Featured Creators -->
+      <section class="section">
+        <div class="section-heading">
+          <h2>Featured Creators</h2>
+          <a href="javascript:void(0)" onclick="navigateTo('discover')" class="view-all">View All →</a>
+        </div>
+        <div class="creator-grid" id="featured-creators-list"></div>
+      </section>
+
+      <!-- Popular Categories -->
+      <section class="section">
+        <div class="section-heading">
+          <h2>Popular Categories</h2>
+        </div>
+        <div class="category-grid">
+          <div class="category-tile" onclick="filterCategory('AI Filmmaking')"><div class="icon-disc"><i data-lucide="film"></i></div><h3>AI Filmmaking</h3><p>Video & short films</p></div>
+          <div class="category-tile" onclick="filterCategory('AI Animation')"><div class="icon-disc"><i data-lucide="file-video"></i></div><h3>AI Animation</h3><p>Animated & illustrations</p></div>
+          <div class="category-tile" onclick="filterCategory('Generative Art')"><div class="icon-disc"><i data-lucide="wand-sparkles"></i></div><h3>Generative Art</h3><p>Digital art & illustrations</p></div>
+          <div class="category-tile" onclick="filterCategory('Product Advertising')"><div class="icon-disc"><i data-lucide="megaphone"></i></div><h3>Product Advertising</h3><p>Brand & product visuals</p></div>
+        </div>
+      </section>
+
+      <!-- Workflow -->
+      <section class="section">
+        <div class="section-heading"><h2>How It Works</h2></div>
+        <div class="workflow-grid">
+          <div class="workflow-step"><div class="icon-disc"><i data-lucide="user-check"></i></div><h3>1. Discover Creators</h3><p>Browse and find the perfect AI creator for your needs.</p></div>
+          <div class="workflow-step"><div class="icon-disc"><i data-lucide="handshake"></i></div><h3>2. Share Your Brief</h3><p>Tell us what you need. AI instant requirements.</p></div>
+          <div class="workflow-step"><div class="icon-disc"><i data-lucide="play-square"></i></div><h3>3. Collaborate & Review</h3><p>Work together, request revisions and give feedback.</p></div>
+          <div class="workflow-step"><div class="icon-disc"><i data-lucide="clipboard-check"></i></div><h3>4. Receive Final Assets</h3><p>Get your high-quality AI-generated content.</p></div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div>
+          <h2>Ready to Create Something Extraordinary?</h2>
+          <p>Join thousands of brands and agencies already working with top AI creators.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-outline btn-pill" onclick="navigateTo('discover')">Find Creators <i data-lucide="arrow-right"></i></button>
+            <button class="btn btn-primary btn-pill" onclick="navigateTo('create-brief')">Start a Brief</button>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Workspace">
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== PAGE: DISCOVER CREATORS ==================== -->
+  <div id="page-discover" class="content-page page-width">
+    <div class="section-heading">
+      <h2>Discover AI Creators</h2>
+    </div>
+    <div class="search-box" style="max-width:100%">
+      <i data-lucide="search" style="color:#64748b"></i>
+      <input type="text" id="discover-search" placeholder="Filter by creator name, skills, or tools..." oninput="renderDiscoveryCreators()">
+    </div>
+    <div class="discovery-layout">
+      <aside class="filters">
+        <div class="filter-group">
+          <h3>Specialization</h3>
+          <label><input type="checkbox" name="role" value="AI Filmmaker" onchange="renderDiscoveryCreators()"> AI Filmmaker</label>
+          <label><input type="checkbox" name="role" value="AI Animator" onchange="renderDiscoveryCreators()"> AI Animator</label>
+          <label><input type="checkbox" name="role" value="Generative Artist" onchange="renderDiscoveryCreators()"> Generative Artist</label>
+        </div>
+        <div class="filter-group">
+          <h3>Tools</h3>
+          <label><input type="checkbox" name="tool" value="Midjourney" onchange="renderDiscoveryCreators()"> Midjourney</label>
+          <label><input type="checkbox" name="tool" value="Runway" onchange="renderDiscoveryCreators()"> Runway</label>
+          <label><input type="checkbox" name="tool" value="Stable Diffusion" onchange="renderDiscoveryCreators()"> Stable Diffusion</label>
+        </div>
+      </aside>
+      <section>
+        <div class="creator-grid" id="discovery-creators-list"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: PORTFOLIOS ==================== -->
+  <div id="page-portfolios" class="content-page page-width">
+    <div class="section-heading">
+      <h2>Curated Portfolios</h2>
+      <p style="color:var(--text-muted);font-size:14px">Explore cinematic video, prompt designs, and short films.</p>
+    </div>
+    <div class="creator-grid" id="portfolio-projects-list"></div>
+  </div>
+
+  <!-- ==================== PAGE: CREATE BRIEF ==================== -->
+  <div id="page-create-brief" class="content-page page-width">
+    <div class="section-heading">
+      <h2>Create a Creative Brief</h2>
+      <p style="color:var(--text-muted);font-size:14px">Fill out requirements to receive bids from top verified creators.</p>
+    </div>
+    <form id="brief-form" onsubmit="submitBrief(event)">
+      <div class="brief-layout">
+        <div class="form-column">
+          <h2>1. Campaign Basics</h2>
+          <label class="form-field">Campaign Title * <input required id="b-title" placeholder="e.g. Summer Launch Visuals"></label>
+          <label class="form-field">Company / Brand * <input required id="b-brand" placeholder="e.g. Acme Studio"></label>
+          <label class="form-field">Description * <textarea required id="b-desc" placeholder="Describe deliverables and goals..."></textarea></label>
+        </div>
+        <div class="form-column">
+          <h2>2. Deliverables</h2>
+          <label class="form-field">Content Type *
+            <select id="b-type">
+              <option>Cinematic Video</option>
+              <option>3D Animation</option>
+              <option>Product Imagery</option>
+            </select>
+          </label>
+          <label class="form-field">Visual Style
+            <select id="b-style">
+              <option>Cinematic & Realistic</option>
+              <option>Futuristic Sci-Fi</option>
+              <option>Minimalist & Modern</option>
+            </select>
+          </label>
+          <label class="form-field">Aspect Ratio
+            <select id="b-ratio">
+              <option>16:9 (Horizontal)</option>
+              <option>9:16 (Vertical Reels/TikTok)</option>
+              <option>1:1 (Square)</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-column">
+          <h2>3. Budget & Timeline</h2>
+          <label class="form-field">Budget Range
+            <select id="b-budget">
+              <option>$1,000 – $3,000</option>
+              <option>$3,000 – $5,000</option>
+              <option>$5,000 – $10,000+</option>
+            </select>
+          </label>
+          <label class="form-field">Target Deadline <input type="date" required id="b-date"></label>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:20px;">Save & Post Brief</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- ==================== PAGE: AI ASSISTANT ==================== -->
+  <div id="page-assistant" class="content-page page-width">
+    <div class="section-heading" style="justify-content:center; text-align:center;">
+      <h2>AI Campaign Assistant</h2>
+    </div>
+    <div class="chat-panel">
+      <div class="chat-header">
+        <i data-lucide="bot" style="color:var(--primary)"></i> Kampus AI Concierge <span class="badge">Live Assistant</span>
+      </div>
+      <div class="chat-messages" id="chat-stream">
+        <div class="chat-bubble">Hi! I am your Kampus AI creative assistant. Looking for cinematic AI video creators, prompt engineers, or need help crafting a brief?</div>
+      </div>
+      <div class="chat-prompts">
+        <button class="btn btn-outline btn-sm" onclick="sendChatPrompt('Find me top cinematic AI filmmakers')">Find top AI filmmakers</button>
+        <button class="btn btn-outline btn-sm" onclick="sendChatPrompt('Help me write a brand video brief')">Draft a brief</button>
+        <button class="btn btn-outline btn-sm" onclick="sendChatPrompt('What tools do your creators use?')">What tools are used?</button>
+      </div>
+      <form class="chat-input" onsubmit="handleChatSubmit(event)">
+        <input type="text" id="chat-user-input" placeholder="Ask anything about creators, budgets, or creative briefs...">
+        <button class="btn btn-primary btn-pill" type="submit"><i data-lucide="send"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODALS (LOGIN / BUSINESS / SIGNIN / SIGNUP) ==================== -->
+  <div class="modal-overlay" id="auth-modal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+      <h3 class="modal-title" id="modal-title">Authentication</h3>
+      <p class="modal-desc" id="modal-desc">Log in or create your account.</p>
+
+      <div id="modal-body">
+        <!-- Rendered dynamically by openModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="page-width">
+      <div class="footer-columns">
+        <div>
+          <a href="javascript:void(0)" class="brand"><i data-lucide="badge-check"></i> Kampus.VC</a>
+          <p style="color:var(--text-muted);font-size:13px;margin-top:8px">AI Content Creator Marketplace.<br>Where AI creativity meets world-class brands.</p>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <a href="javascript:void(0)" onclick="navigateTo('home')">Home</a>
+          <a href="javascript:void(0)" onclick="navigateTo('discover')">Discover Creators</a>
+          <a href="javascript:void(0)" onclick="navigateTo('portfolios')">Portfolios</a>
+          <a href="javascript:void(0)" onclick="navigateTo('create-brief')">Create Brief</a>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <a href="javascript:void(0)" onclick="alert('Kampus.VC connects brands with AI creators.')">About Us</a>
+          <a href="javascript:void(0)" onclick="alert('Privacy terms compliant.')">Privacy Policy</a>
+          <a href="javascript:void(0)" onclick="alert('Terms of service demo.')">Terms of Service</a>
+        </div>
+        <div>
+          <h3>Portals</h3>
+          <a href="javascript:void(0)" onclick="openModal('business')">Business Portal</a>
+          <a href="javascript:void(0)" onclick="openModal('signup')">Creator Application</a>
+          <a href="javascript:void(0)" onclick="openModal('login')">Account Login</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <span>© 2026 Kampus.VC. All rights reserved.</span>
+        <span>Where AI Creativity Meets Brands</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script src="script.js"></script>
+</body>
+</html>
